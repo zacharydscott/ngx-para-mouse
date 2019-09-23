@@ -1,8 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <div class="cont" paraContainer>
-    <div class="para-1" paraElement>
-      <img [paraElement]="7" src="../assets/para-mouse.png" class="para-mouse" alt="">
+  <div class="cont"
+    [paraContainer]="{
+      mouseOutReset: true,
+      duration: '3s ease',
+      slide: {xSlide: 15, ySlide: 25}, 
+      overflow: 'hidden'
+    }">
+    <div class="para-1" [paraElement]="25">
     </div>
   </div>
 </div>

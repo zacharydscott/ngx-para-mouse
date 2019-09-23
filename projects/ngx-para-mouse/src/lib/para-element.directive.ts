@@ -19,7 +19,9 @@ export class ParaElementDirective implements OnDestroy, OnInit {
   constructor(private ParaMouseService: ParaMouseService) {}
   ngOnInit() {
     // sets the slide values for the element
-    this.slide = this.slide || this.ParaMouseService.options.slide;
+    console.log(this.ParaMouseService.options)
+    this.slide = this.slide || this.slide === 0 ?  this.slide : this.ParaMouseService.options.slide;
+    console.log(this.slide)
     let xSlide;
     let ySlide;
     if (!isNumber(this.slide)) {

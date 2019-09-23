@@ -1,24 +1,91 @@
-# NgParaMouse
+# Ngx-Para-Mouse
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Provides a simple way to create mouse position driven parallax effects in your angular projects
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name --project ngx-para-mouse` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-para-mouse`.
-> Note: Don't forget to add `--project ngx-para-mouse` or else it will be added to the default project in your `angular.json` file. 
+Download the package with:
 
-## Build
+```bash
+npm install ngx-para-mouse --save
+```
 
-Run `ng build ngx-para-mouse` to build the project. The build artifacts will be stored in the `dist/` directory.
+add it to the target NgModule (app module for root availability):
 
-## Publishing
+```bash
+@NgModule({
+    ...
+    imports: [ParaMouseModule, ...]
+    ...
+})
+```
 
-After building your library with `ng build ngx-para-mouse`, go to the dist folder `cd dist/ngx-para-mouse` and run `npm publish`.
+## Basic Usage
 
-## Running unit tests
+Use the directives 'paraContainer' to an element to set it as the "window" to the parallax effect. In a child element, add the directive 'paraElement' to set it as an element that should respond to mouse position. You can nest multiple paraContainer elements. This will cause the element to move relative to it's parent, "stacking" the movement.
 
-Run `ng test ngx-para-mouse` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+<div style="text-align:center">
+  <div class="cont" paraContainer>
+    <div class="para-1" paraElement>
+      <img paraElementsrc="../assets/para-mouse.png" class="para-mouse" alt="">
+    </div>
+  </div>
+</div>
+```
 
-## Further help
+## Configuration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Configuration is available, whichh can be passed through the paraContainer directive.
+
+```bash
+<div style="text-align:center">
+  <div class="cont"
+    [paraContainer]="{
+      mouseOutReset: true,
+      duration: '3s ease',
+      slide: {xSlide: 15, ySlide: 25},
+      overflow: 'hidden'
+    }">
+    <div class="para-1" paraElement>
+      <img paraElement src="../assets/para-mouse.png" class="para-mouse" alt="">
+    </div>
+  </div>
+</div>
+```
+
+The properties do the following:
+- MouseOutReset (default: true)- causes the effect to reset when the
+  cursor leaves the container
+- Duration (default: '2s ease-out')- sets the transition-duration property
+  for the underlying css
+- Slide (default: 5)- sets the ratio of mouse movement to element movement in percentage,
+can be a number or an object {xSlide: number, ySlide: number}.
+- Overflow (default: true)- hides overflow of elements
+
+Configurations are of type 'ParaOptions' if you want to use the interface for .ts creation.
+
+```bash
+export interface ParaOptions {
+    mouseOutReset?: boolean;
+    duration?: string;
+    slide?: ParaSlide
+    overflow?: string;
+}
+```
+
+Finally, you can override the slide properties property on any paraElement
+```bash
+<div style="text-align:center">
+  <div class="cont"
+    [paraContainer]="{
+      mouseOutReset: true,
+      duration: '3s ease',
+      slide: {xSlide: 15, ySlide: 25}, 
+      overflow: 'hidden'
+    }">
+    <div class="para-1" [paraElement]="25">
+    </div>
+  </div>
+</div>
+```
