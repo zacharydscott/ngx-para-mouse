@@ -115,6 +115,41 @@
           }
         }
       }
+    },
+    "ng-para-mouse": {
+      "projectType": "library",
+      "root": "projects/ng-para-mouse",
+      "sourceRoot": "projects/ng-para-mouse/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-para-mouse/tsconfig.lib.json",
+            "project": "projects/ng-para-mouse/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-para-mouse/src/test.ts",
+            "tsConfig": "projects/ng-para-mouse/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-para-mouse/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-para-mouse/tsconfig.lib.json",
+              "projects/ng-para-mouse/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ngx-para-mouse"
 }
