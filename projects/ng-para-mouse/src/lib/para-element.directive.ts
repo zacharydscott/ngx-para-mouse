@@ -3,11 +3,13 @@ import { ParaMouseService } from './para-mouse.service';
 import { Subscription } from 'rxjs';
 import { ParaSlide, isNumber } from './i-para-slide';
 
+
+/** The directive to make an element parallax inside a para-container */
 @Directive({
-  selector: '[ParaElement]'
+  selector: '[paraElement]'
 })
 export class ParaElementDirective implements OnDestroy, OnInit {
-  @Input('ParaElement') slide: ParaSlide;
+  @Input('paraElement') slide: ParaSlide;
   @Input() duration: string;
   @HostBinding('style.transform') transform: string;
   @HostBinding('style.transition') elementDuration: string;
@@ -16,8 +18,8 @@ export class ParaElementDirective implements OnDestroy, OnInit {
 
   constructor(private ParaMouseService: ParaMouseService) {}
   ngOnInit() {
+    // sets the slide values for the element
     this.slide = this.slide || this.ParaMouseService.options.slide;
-    console.log(this.slide)
     let xSlide;
     let ySlide;
     if (!isNumber(this.slide)) {
@@ -26,6 +28,7 @@ export class ParaElementDirective implements OnDestroy, OnInit {
     } else {
       [xSlide, ySlide] = [this.slide*.01, this.slide*.01]
     }
+    // sets parallax properties
     this.elementDuration = this.duration || this.ParaMouseService.options.duration;
     this.mouseSub = this.ParaMouseService.mouseStream$.subscribe((event: {x: number, y: number}) => {
       // console.log(event)

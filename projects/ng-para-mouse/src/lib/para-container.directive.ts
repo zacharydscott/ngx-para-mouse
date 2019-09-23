@@ -1,15 +1,17 @@
-import { Directive, ElementRef, AfterContentInit, Input, HostBinding } from '@angular/core';
+import { Directive, ElementRef, Input, HostBinding, OnInit } from '@angular/core';
 import { fromEvent, never, merge } from 'rxjs';
 import { ParaMouseService } from './para-mouse.service';
 import { map, startWith } from 'rxjs/operators';
 import { ParaOptions } from './i-para-options';
 
+
+/** The container which holds any nested amount of para-elements */
 @Directive({
-  selector: '[ParaContainer]',
+  selector: '[paraContainer]',
   providers: [ParaMouseService]
 })
-export class ParaContainerDirective implements AfterContentInit {
-  @Input('ParaContainer') options: ParaOptions;
+export class ParaContainerDirective implements OnInit {
+  @Input('paraContainer') options: ParaOptions;
   @HostBinding('style.overflow') overflow: string;
   constructor(private el: ElementRef, private ParaMouseService: ParaMouseService) {}
   ngOnInit() {
@@ -24,8 +26,8 @@ export class ParaContainerDirective implements AfterContentInit {
     this.options = { ...defaultOptions, ...this.options };
     this.ParaMouseService.options = this.options;
     this.overflow = this.options.overflow;
-    // Setting the adju
 
+    // Setting the adjustment observable which para-elements will use
     this.ParaMouseService;
     const mouseOutStream$ = fromEvent(this.el.nativeElement, 'mouseleave').pipe(
       map(() => {
@@ -48,8 +50,5 @@ export class ParaContainerDirective implements AfterContentInit {
       mouseMoveStream$,
       this.options.mouseOutReset ? mouseOutStream$ : never()
     ).pipe(startWith({x:0,y:0}));
-  }
-  ngAfterContentInit() {
-    console.log('width', this.el.nativeElement.offsetWidth, this.el.nativeElement.offsetHeight);
   }
 }
