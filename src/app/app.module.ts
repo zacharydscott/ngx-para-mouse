@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ParaMouseModule } from 'projects/ng-para-mouse/src/public-api';
+import { ParaMouseModule } from 'ngx-para-mouse';
 
 @NgModule({
   declarations: [

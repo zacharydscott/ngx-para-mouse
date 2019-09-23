@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ng-para-mouse",
+  "dest": "../../dist/ngx-para-mouse",
   "lib": {
     "entryFile": "src/public-api.ts"
   }

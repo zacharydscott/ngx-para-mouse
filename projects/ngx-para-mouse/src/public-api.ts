@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-para-mouse
+ * Public API Surface of ngx-para-mouse
  */
 
 export * from './lib/para-mouse.service';
