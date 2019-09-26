@@ -1,33 +1,39 @@
 .para-1 {
     width: 850px;
-    height: 600px;
+    height: 450px;
     vertical-align: middle;
     position: relative;
-    background-image: url(../assets/clouds.png);
-    background-size: 850px 600px;
-    background-position: -50px -50px;
-    top: -5%;
-    left: -5%;
+    background-image: url(../assets/cropped.png);
+    background-size: 800px 450px;
+    left: -25px;
+    top: -25px;    
 }
 
 .para-2 {
-    width: 250px;
-    height: 250px;
-    background-color: red;
-    position: absolute;
-    top: 12.5%;
-    left: 15%;
+    width: 850px;
+    height: 600px;
+    vertical-align: middle;
+    position: relative;
+    top: -30px;
+    background-image: url(../assets/cutout.png);
+    background-size: 860px;
+    left: -32px;
+    top: -145px;
 }
 
 .cont {
     background-color: green;
     width: 750px;
-    height: 500px;
+    display: inline-block;
+    height: 400px;
     vertical-align: middle;
 }
 
 .para-mouse {
-    width: 250px;
-    position: relative;
-    top:50px;
+    position: absolute;
+    top: 125px;
+    left: 285px;
+    color: white;
+    font-size: 35px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

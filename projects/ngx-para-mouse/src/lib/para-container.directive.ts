@@ -4,7 +4,6 @@ import { ParaMouseService } from './para-mouse.service';
 import { map, startWith } from 'rxjs/operators';
 import { ParaOptions } from './i-para-options';
 
-
 /** The container which holds any nested amount of para-elements */
 @Directive({
   selector: '[paraContainer]',
@@ -38,17 +37,17 @@ export class ParaContainerDirective implements OnInit {
       })
     );
     const natEl = this.el.nativeElement;
-      const mouseMoveStream$ = fromEvent(this.el.nativeElement, 'mousemove').pipe(
-        map((event: MouseEvent) => {
-          return {
-            x: event.offsetX - natEl.clientWidth / 2,
-            y: event.offsetY - natEl.clientHeight / 2
-          };
-        })
-      );
+    const mouseMoveStream$ = fromEvent(this.el.nativeElement, 'mousemove').pipe(
+      map((event: MouseEvent) => {
+        return {
+          x: event.pageX - natEl.offsetLeft - natEl.clientWidth / 2,
+          y: event.pageY - natEl.offsetTop - natEl.clientHeight / 2
+        };
+      })
+    );
     this.ParaMouseService.mouseStream$ = merge(
       mouseMoveStream$,
       this.options.mouseOutReset ? mouseOutStream$ : never()
-    ).pipe(startWith({x:0,y:0}));
+    ).pipe(startWith({ x: 0, y: 0 }));
   }
 }

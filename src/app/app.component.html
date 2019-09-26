@@ -3,11 +3,25 @@
   <div class="cont"
     [paraContainer]="{
       mouseOutReset: true,
-      duration: '3s ease',
+      duration: '3s ease-out',
       slide: {xSlide: 15, ySlide: 25}, 
       overflow: 'hidden'
     }">
-    <div class="para-1" [paraElement]="25">
+    <div class="para-1" [paraElement]="2">
+      <span class="para-mouse" [paraElement]="15">NGX Para Mouse</span>
+      <div class="para-2" [paraElement]="3"></div>
     </div>
   </div>
 </div>
+<div class="cont"
+    [paraContainer]="{
+      mouseOutReset: true,
+      duration: '3s ease-out',
+      slide: {xSlide: 15, ySlide: 25}, 
+      overflow: 'hidden'
+    }">
+    <div class="para-1" [paraElement]="2">
+      <span class="para-mouse" [paraElement]="15">NGX Para Mouse</span>
+      <div class="para-2" [paraElement]="3"></div>
+    </div>
+  </div>
