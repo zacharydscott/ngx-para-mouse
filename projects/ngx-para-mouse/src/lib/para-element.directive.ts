@@ -19,9 +19,7 @@ export class ParaElementDirective implements OnDestroy, OnInit {
   constructor(private ParaMouseService: ParaMouseService) {}
   ngOnInit() {
     // sets the slide values for the element
-    console.log(this.ParaMouseService.options)
     this.slide = this.slide || this.slide === 0 ?  this.slide : this.ParaMouseService.options.slide;
-    console.log(this.slide)
     let xSlide;
     let ySlide;
     if (!isNumber(this.slide)) {
@@ -33,7 +31,6 @@ export class ParaElementDirective implements OnDestroy, OnInit {
     // sets parallax properties
     this.elementDuration = this.duration || this.ParaMouseService.options.duration;
     this.mouseSub = this.ParaMouseService.mouseStream$.subscribe((event: {x: number, y: number}) => {
-      // console.log(event)
       this.transform =
         'translate(' +
         -event.x * xSlide +
